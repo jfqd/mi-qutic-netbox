@@ -18,12 +18,17 @@ HOSTNAME=$(/usr/bin/hostname)
 sed -i "s#netbox.example.com#${HOSTNAME}#" \
   /home/netbox/netbox/netbox/netbox/configuration.py
 
-# migrate db
+# get admin email
 if mdata-get netbox_admin_email 1>/dev/null 2>&1; then
   ADMIN_EMAIL=$(mdata-get netbox_admin_email)
 else
   ADMIN_EMAIL="info@example.com"
 fi
+# set admin email
+sed -i "s/# ['John Doe', 'jdoe@example.com'],/['admin', '${ADMIN_EMAIL}']/" \
+  /home/netbox/netbox/netbox/netbox/configuration.py
+
+# migrate db
 cd /home/netbox/netbox/netbox
 python3.6 manage.py migrate || true
 python3.6 manage.py createsuperuser --username "admin" --no-input --email "${ADMIN_EMAIL}" || true
