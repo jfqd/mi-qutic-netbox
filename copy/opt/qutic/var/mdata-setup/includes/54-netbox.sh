@@ -37,3 +37,4 @@ python3.6 manage.py collectstatic --no-input || true
 # start services
 svccfg import /opt/local/lib/svc/manifest/netbox.xml
 svccfg import /opt/local/lib/svc/manifest/netbox-rs.xml
+svcadm enable nginx
