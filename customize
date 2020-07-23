@@ -5,7 +5,7 @@ PATH=/opt/local/gnu/bin:/opt/local/bin:/opt/local/sbin:/usr/bin:/usr/sbin
 # Exit if any command fails
 set -o errexit
 
-# setup postgresql for passwordless usage vor psql user
+# setup postgresql for passwordless usage for psql usage
 sed -i 's/local   all             all                                     password/local   all             all                                     peer/' \
   /var/pgsql/data/pg_hba.conf
 
