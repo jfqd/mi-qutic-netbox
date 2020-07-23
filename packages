@@ -1,0 +1,14 @@
+postgresql96
+redis
+py36-pip
+py36-Pillow
+libxml2
+libxslt
+libffi
+libpqxx
+zlib
+nginx
+gcc7
+gmake
+pkg-config
+git

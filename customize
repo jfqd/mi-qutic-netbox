@@ -1,0 +1,51 @@
+#!/usr/bin/bash
+
+PATH=/opt/local/gnu/bin:/opt/local/bin:/opt/local/sbin:/usr/bin:/usr/sbin
+
+# Exit if any command fails
+set -o errexit
+
+# setup postgresql for passwordless usage vor psql user
+sed -i 's/local   all             all                                     password/local   all             all                                     peer/' \
+  /var/pgsql/data/pg_hba.conf
+
+# access postgresql only on localhost
+sed -i "s/#listen_addresses = 'localhost'/listen_addresses = 'localhost'/" \
+  /var/pgsql/data/postgresql.conf
+
+# start services
+svcadm enable svc:/pkgsrc/postgresql:default
+svcadm enable redis
+
+groupadd -g 1100 netbox
+useradd -m -s /usr/bin/bash -d /home/netbox -u 1100 -g netbox netbox
+passwd -N netbox
+passwd -d netbox
+
+cd /home/netbox
+git clone -b master https://github.com/netbox-community/netbox.git
+
+# setup venv
+python3.6 -m venv /home/netbox/venv
+source venv/bin/activate
+
+# install required packages
+cd netbox
+TMPDIR=/var/tmp pip3.6 install --upgrade pip
+TMPDIR=/var/tmp pip3.6 install -r requirements.txt
+TMPDIR=/var/tmp pip3.6 install napalm
+
+# move config into place
+mv /var/zoneinit/tmp/configuration.py /home/netbox/netbox/netbox/netbox/configuration.py
+cp /home/netbox/netbox/contrib/gunicorn.py /home/netbox/netbox/gunicorn.py
+
+# fix rights
+chown -R netbox:netbox /home/netbox
+
+# Clean up
+echo "* Cleaning up."
+rm -rf /var/zoneinit/tmp/
+rm /root/customize
+
+# Prepare image for provisioning
+sm-prepare-image -y

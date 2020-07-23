@@ -1,0 +1,8 @@
+name="qutic-netbox"
+organization="qutic development"
+brand="netbox Instance"
+version="20191127.0"
+description="qutic netbox image"
+homepage="https://github.com/jfqd/mi-qutic-netbox"
+users="root admin"
+base="73d24582-a745-11ea-a0d3-ab4003f99a6e"
