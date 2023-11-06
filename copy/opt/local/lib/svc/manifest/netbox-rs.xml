@@ -16,7 +16,7 @@
       <method_credential user="netbox" group="netbox"/>
     </method_context>
     
-    <exec_method type="method" name="start" exec="/home/netbox/venv/bin/python3.9 /home/netbox/netbox/netbox/manage.py rqworker" timeout_seconds="15"/>
+    <exec_method type="method" name="start" exec="/home/netbox/venv/bin/python3.10 /home/netbox/netbox/netbox/manage.py rqworker" timeout_seconds="15"/>
     <exec_method type="method" name="stop"  exec=":kill" timeout_seconds="60"/>
     
     <property_group name="application" type="application"></property_group>

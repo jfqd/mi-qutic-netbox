@@ -3,7 +3,7 @@
 ## 20230910.0 - 2023-11-06
 
 * use latest base image
-* upgrade to python-3.9
+* upgrade to python3.10
 
 ## 20191127.0
 

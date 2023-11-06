@@ -1,10 +1,11 @@
-postgresql16-serever
+postgresql16
 postgresql16-client
+zabbix-agent-5
 redis
-py39-pip
-py39-Pillow
-py39-maturin
-py39-rpds-py
+py310-pip
+py310-Pillow
+py310-maturin
+py310-rpds-py
 libxml2
 libxslt
 libffi
