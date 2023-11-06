@@ -1,6 +1,6 @@
 {
   "name":         "qutic-netbox",
-  "version":      "20191127.0",
+  "version":      "20230910.0",
   "description":  "qutic netbox image",
   "organization": "qutic development",
   "brand":        "netbox Instance",
