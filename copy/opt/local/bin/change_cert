@@ -1,0 +1,8 @@
+#!/usr/bin/bash
+(
+cd /opt/local/etc/nginx/ssl/;
+openssl pkey -in nginx.pem -out nginx.key;
+openssl crl2pkcs7 -nocrl -certfile nginx.pem | openssl pkcs7 -print_certs -out nginx.crt;
+chmod 0600 nginx.key;
+svcadm restart nginx;
+)

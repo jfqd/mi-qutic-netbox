@@ -36,9 +36,9 @@ sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE netbox TO netbox;"
 
 # migrate db
 cd /home/netbox/netbox/netbox
-python3.6 manage.py migrate || true
-python3.6 manage.py createsuperuser --username "admin" --no-input --email "${ADMIN_EMAIL}" || true
-python3.6 manage.py collectstatic --no-input || true
+python3.9 manage.py migrate || true
+python3.9 manage.py createsuperuser --username "admin" --no-input --email "${ADMIN_EMAIL}" || true
+python3.9 manage.py collectstatic --no-input || true
 
 # start services
 svccfg import /opt/local/lib/svc/manifest/netbox.xml

@@ -26,14 +26,14 @@ cd /home/netbox
 git clone -b master https://github.com/netbox-community/netbox.git
 
 # setup venv
-python3.6 -m venv /home/netbox/venv
+python3.9 -m venv /home/netbox/venv
 source venv/bin/activate
 
 # install required packages
 cd netbox
-TMPDIR=/var/tmp pip3.6 install --upgrade pip
-TMPDIR=/var/tmp pip3.6 install -r requirements.txt
-TMPDIR=/var/tmp pip3.6 install napalm
+TMPDIR=/var/tmp pip3.9 install --upgrade pip
+TMPDIR=/var/tmp pip3.9 install -r requirements.txt
+TMPDIR=/var/tmp pip3.9 install napalm
 
 # move config into place
 mv /var/zoneinit/tmp/configuration.py /home/netbox/netbox/netbox/netbox/configuration.py
